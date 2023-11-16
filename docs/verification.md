@@ -6,7 +6,8 @@ Executed locally on Windows with Python 3.12:
 |---|---|
 | Ruff lint and formatting | Passed |
 | Strict mypy checks | Passed for the application source |
-| Pytest suite | 46 cases passed |
+| Core pytest suite | 46 cases passed |
+| Backup/restore regression | Online backup restores invoice, receipt and report evidence; later source writes stay isolated |
 | Combined statement/branch coverage | 98.87%, above the 85% gate |
 | HTTP walkthrough | Expected partial-payment report produced |
 | Runtime dependency audit | No known advisories reported by pip-audit |
@@ -17,4 +18,4 @@ Starlette currently emits a deprecation warning for its httpx-based test client.
 
 GitHub Actions is configured for Python 3.12/3.13 on Ubuntu and Windows. Its live results, timestamps and tested commit IDs are available in the Actions tab. Local results alone do not establish that those matrix jobs passed.
 
-No external payment provider, deployment load test, independent security assessment or disaster-recovery drill was performed. The tests do not establish regulatory compliance or freedom from defects.
+No external payment provider, deployment load test, independent security assessment or operational disaster-recovery drill was performed. The restore regression is a local database consistency check, not a backup-scheduling or failover exercise. The tests do not establish regulatory compliance or freedom from defects.
