@@ -19,6 +19,8 @@ with sqlite3.connect("data/billtrace.sqlite3") as source:
 
 Do not copy only the main file while WAL writes are active. Store encrypted backups separately. Test a restore into an isolated directory, run `PRAGMA integrity_check`, and compare stored reconciliation digests and invoice counts. Back up before any future schema migration. Automated backup scheduling and disaster-recovery drills are outside this repository's executed checks.
 
+`python -m pytest tests/test_restore.py --no-cov` exercises the online backup and checks restored invoice amounts, receipts, report digests and isolation from subsequent source writes.
+
 ## Recovery expectations
 
 A transaction rolls back when its connection fails before commit. A client can lose the response after a successful commit; replay the same reference and payload to recover the existing result. Do not rewrite immutable records to force reconciliation to match. Investigate mismatch evidence and correct the upstream source through an agreed correction process.
